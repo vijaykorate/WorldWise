@@ -35,30 +35,6 @@
         "lng": 139.6503
       },
       "id": 98443197
-    },
-    {
-      "cityName": "New York",
-      "country": "United States",
-      "emoji": "🇺🇸",
-      "date": "2027-10-31T15:59:59.138Z",
-      "notes": "My favorite city so far!",
-      "position": {
-        "lat": 40.7128,
-        "lng": -74.006
-      },
-      "id": 73946
-    },
-    {
-      "cityName": "Moscow",
-      "country": "Russia",
-      "emoji": "🇷🇺",
-      "date": "2027-07-15T08:22:53.976Z",
-      "notes": "Capital city experience",
-      "position": {
-        "lat": 55.7558,
-        "lng": 37.6173
-      },
-      "id": 1336
     }
   ]
 }
