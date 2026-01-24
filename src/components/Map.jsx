@@ -11,16 +11,23 @@ import { useEffect, useState } from "react";
 
 import styles from "./Map.module.css";
 import { useCities } from "../context/CitiesContext";
+import { useGeolocation } from "../hooks/useGeolocation";
+import { useUrlPosition } from "../hooks/useUrlPosition";
+import Button from "./Button";
 
 function Map() {
   const { cities } = useCities();
-
   const [mapPosition, setMapPosition] = useState([40, 0]);
-
   const [searchParams] = useSearchParams();
+  const {
+    isLoading: isLoadingPosition,
+    position: geolocationPosition,
+    getPosition,
+  } = useGeolocation();
+  const [mapLat, mapLng] = useUrlPosition();
 
-  const mapLat = searchParams.get("lat");
-  const mapLng = searchParams.get("lng");
+  // const mapLat = searchParams.get("lat");
+  // const mapLng = searchParams.get("lng");
 
   useEffect(
     function () {
@@ -29,8 +36,21 @@ function Map() {
     [mapLat, mapLng],
   );
 
+  useEffect(
+    function () {
+      if (geolocationPosition)
+        setMapPosition([geolocationPosition.lat, geolocationPosition.lng]);
+    },
+    [geolocationPosition],
+  );
+
   return (
     <div className={styles.mapContainer}>
+      {!geolocationPosition && (
+        <Button type="position" onClick={getPosition}>
+          {isLoadingPosition ? "Loading..." : "Use your position"}
+        </Button>
+      )}
       <MapContainer
         center={mapPosition}
         zoom={6}
